@@ -18,7 +18,7 @@ class IncidentCreate(BaseModel):
     affected_policy_id: str
     affected_policy_name: str
     summary: str
-    owner: str = "Arjun Mehta"
+    owner: str = "Harsh Shrivastava"
     vulnerability_id: Optional[str] = None
     vulnerability_title: Optional[str] = None
     simulation_id: Optional[str] = None

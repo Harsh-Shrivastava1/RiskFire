@@ -73,7 +73,7 @@ class MongoPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=rules,
             created_at=now_iso,
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes=data.notes,
         )
 

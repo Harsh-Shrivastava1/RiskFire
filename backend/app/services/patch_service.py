@@ -72,7 +72,7 @@ class PatchService:
     async def generate_patch_for_vulnerability(
         self,
         vulnerability_id: str,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         vuln = await self.vulnerability_repo.get_vulnerability_by_id(vulnerability_id)
         if not vuln:
@@ -237,7 +237,7 @@ class PatchService:
         patch_id: str,
         split: DatasetSplitType = DatasetSplitType.HELD_OUT,
         seed: int = 49201,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         patch = await self.get_patch(patch_id)
         policy = await self.policy_repo.get_policy_by_id(patch.source_policy_id)
@@ -376,7 +376,7 @@ class PatchService:
         self,
         patch_id: str,
         simulation_transactions: List[dict],
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         patch = await self.get_patch(patch_id)
         policy = await self.policy_repo.get_policy_by_id(patch.source_policy_id)
@@ -479,7 +479,7 @@ class PatchService:
         patch_id: str,
         feedback_notes: Optional[str] = None,
         target_split: DatasetSplitType = DatasetSplitType.HELD_OUT,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         """
         Creates a new immutable candidate iteration without mutating the previous candidate.
@@ -557,7 +557,7 @@ class PatchService:
         self,
         patch_id: str,
         request: PatchApproveRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         patch = await self.get_patch(patch_id)
         if patch.status == PatchStatus.APPROVED:
@@ -617,7 +617,7 @@ class PatchService:
         self,
         patch_id: str,
         request: PatchRejectRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PatchResponse:
         patch = await self.get_patch(patch_id)
         now_iso = datetime.now(timezone.utc).isoformat()

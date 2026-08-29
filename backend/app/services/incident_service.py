@@ -20,7 +20,7 @@ class IncidentService:
             raise ResourceNotFoundError("Incident", incident_id)
         return inc
 
-    async def create_incident(self, data: IncidentCreate, actor_name: str = "Arjun Mehta") -> IncidentResponse:
+    async def create_incident(self, data: IncidentCreate, actor_name: str = "Harsh Shrivastava") -> IncidentResponse:
         inc = await self.incident_repo.create_incident(data)
         await self.audit_service.record_event(
             action="INCIDENT_RECORDED",
@@ -33,7 +33,7 @@ class IncidentService:
         )
         return inc
 
-    async def update_incident(self, incident_id: str, data: IncidentUpdate, actor_name: str = "Arjun Mehta") -> IncidentResponse:
+    async def update_incident(self, incident_id: str, data: IncidentUpdate, actor_name: str = "Harsh Shrivastava") -> IncidentResponse:
         inc = await self.incident_repo.update_incident(incident_id, data)
         if not inc:
             raise ResourceNotFoundError("Incident", incident_id)

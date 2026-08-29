@@ -130,7 +130,7 @@ async def test_full_phase7_closed_loop_workflow():
     approved_patch = await patch_service.approve_patch(
         patch_id=patch.id,
         request=PatchApproveRequest(
-            approved_by="Arjun Mehta",
+            approved_by="Harsh Shrivastava",
             notes="Held-out evaluation passed with verified improvement and zero false-alarm regression."
         )
     )

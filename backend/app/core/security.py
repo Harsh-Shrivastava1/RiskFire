@@ -10,7 +10,7 @@ class UserContext(BaseModel):
     Explicitly marked as DEV_NON_PRODUCTION_AUTH for Phase 2.
     """
     user_id: str = "usr-dev-01"
-    name: str = "Arjun Mehta"
+    name: str = "Harsh Shrivastava"
     role: str = "MERCHANT_ADMIN"
     merchant_id: str = settings.DEV_MERCHANT_ID
     merchant_name: str = settings.DEV_MERCHANT_NAME
@@ -29,7 +29,7 @@ def get_current_user(
     merchant_id = x_merchant_id or settings.DEV_MERCHANT_ID
     return UserContext(
         user_id="usr-dev-01",
-        name="Arjun Mehta",
+        name="Harsh Shrivastava",
         role="MERCHANT_ADMIN",
         merchant_id=merchant_id,
         merchant_name=settings.DEV_MERCHANT_NAME,

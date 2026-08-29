@@ -49,7 +49,7 @@ class SimulationService:
         self,
         merchant_id: str,
         request: SimulationCreateRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> SimulationRunResponse:
         # Load policy
         policy = None
@@ -103,7 +103,7 @@ class SimulationService:
         self,
         merchant_id: str,
         request: FireDrillRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> SimulationRunResponse:
         create_req = SimulationCreateRequest(
             policy_id=request.policy_id,

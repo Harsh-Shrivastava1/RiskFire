@@ -230,7 +230,7 @@ async def test_full_entity_lifecycle_persistence_in_mongo(mongo_test_db):
     assert db.patches.find_one({"id": "patch-lifecycle-01"})["status"] == "SIMULATED"
 
     patch.status = PatchStatus.APPROVED
-    patch.reviewed_by = "Arjun Mehta"
+    patch.reviewed_by = "Harsh Shrivastava"
     await patch_repo.update_patch("patch-lifecycle-01", patch)
     assert db.patches.find_one({"id": "patch-lifecycle-01"})["status"] == "APPROVED"
 
@@ -240,7 +240,7 @@ async def test_full_entity_lifecycle_persistence_in_mongo(mongo_test_db):
         AuditLogCreate(
             action="POLICY_PATCH_APPROVED",
             actor_type=AuditActorType.USER,
-            actor_name="Arjun Mehta",
+            actor_name="Harsh Shrivastava",
             entity_type="PolicyPatch",
             entity_id="patch-lifecycle-01",
             entity_name="Tighten Velocity Ceiling",

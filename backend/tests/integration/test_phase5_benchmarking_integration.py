@@ -99,7 +99,7 @@ async def test_benchmark_service_batch_lifecycle_and_audit(sample_baseline, samp
         baseline_policy=sample_baseline,
         candidate_rules=sample_candidate_rules,
         candidate_version="v1.1.0-cand",
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
     assert cand_snapshot.is_frozen is True
 
@@ -110,7 +110,7 @@ async def test_benchmark_service_batch_lifecycle_and_audit(sample_baseline, samp
         seed=49201,
         dataset_id="ds-synthetic-v1",
         split=DatasetSplitType.HELD_OUT,
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
 
     assert report.benchmark_id is not None

@@ -20,7 +20,7 @@ class PolicyService:
             raise ResourceNotFoundError("Policy", policy_id)
         return pol
 
-    async def create_policy(self, merchant_id: str, data: PolicyCreate, actor_name: str = "Arjun Mehta") -> PolicyResponse:
+    async def create_policy(self, merchant_id: str, data: PolicyCreate, actor_name: str = "Harsh Shrivastava") -> PolicyResponse:
         if not data.rules:
             raise PolicyValidationError("Policy must define at least one active rule.")
         
@@ -36,7 +36,7 @@ class PolicyService:
         )
         return pol
 
-    async def update_policy(self, policy_id: str, data: PolicyUpdate, actor_name: str = "Arjun Mehta") -> PolicyResponse:
+    async def update_policy(self, policy_id: str, data: PolicyUpdate, actor_name: str = "Harsh Shrivastava") -> PolicyResponse:
         pol = await self.policy_repo.update_policy(policy_id, data)
         if not pol:
             raise ResourceNotFoundError("Policy", policy_id)
@@ -52,7 +52,7 @@ class PolicyService:
         )
         return pol
 
-    async def create_new_version(self, policy_id: str, version: PolicyVersionSchema, actor_name: str = "Arjun Mehta") -> PolicyResponse:
+    async def create_new_version(self, policy_id: str, version: PolicyVersionSchema, actor_name: str = "Harsh Shrivastava") -> PolicyResponse:
         pol = await self.policy_repo.create_policy_version(policy_id, version)
         await self.audit_service.record_event(
             action="POLICY_VERSION_PROMOTED",
@@ -65,7 +65,7 @@ class PolicyService:
         )
         return pol
 
-    async def delete_policy(self, policy_id: str, actor_name: str = "Arjun Mehta") -> bool:
+    async def delete_policy(self, policy_id: str, actor_name: str = "Harsh Shrivastava") -> bool:
         pol = await self.policy_repo.get_policy_by_id(policy_id)
         if not pol:
             raise ResourceNotFoundError("Policy", policy_id)

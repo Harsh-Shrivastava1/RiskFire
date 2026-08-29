@@ -19,7 +19,7 @@ class InMemoryAuditRepository(AuditRepository):
                 timestamp="2026-08-20T10:15:00Z",
                 action="SIMULATION_EXECUTION_TRIGGERED",
                 actor_type=AuditActorType.USER,
-                actor_name="Arjun Mehta",
+                actor_name="Harsh Shrivastava",
                 entity_type="SimulationRun",
                 entity_id="sim-run-8921",
                 entity_name="Fire Drill: Velocity & Hardware Stress Test",

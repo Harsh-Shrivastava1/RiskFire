@@ -15,7 +15,7 @@ export const mockIncidents: Incident[] = [
     simulatedExposure: 1180000,
     bypassesCount: 184,
     detectedAt: '2026-08-20T11:15:45Z',
-    owner: 'Arjun Mehta (Lead Risk Engineer)',
+    owner: 'Harsh Shrivastava (Lead Risk Engineer)',
     summary: 'Red-team simulation identified a coordinated 48-account syndicate bypassing account rate-limits through device & address clustering.',
     timeline: [
       {

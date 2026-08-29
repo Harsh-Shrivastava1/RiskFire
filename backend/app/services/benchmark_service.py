@@ -54,7 +54,7 @@ class BenchmarkService:
         policy_version_number: str,
         transactions: List[dict],
         split: DatasetSplitType = DatasetSplitType.HELD_OUT,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> BenchmarkRunResponse:
         # Enforce held-out test evaluation boundary
         metrics = self.benchmark_engine.compute_metrics(
@@ -107,7 +107,7 @@ class BenchmarkService:
         candidate_version: str = "v1.1.0-candidate",
         source_vulnerability_id: Optional[str] = None,
         ai_proposal_id: Optional[str] = None,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> CandidatePolicySnapshot:
         snapshot = self.benchmark_engine.freeze_candidate(
             candidate_id=candidate_id,
@@ -142,7 +142,7 @@ class BenchmarkService:
         seed: int = 49201,
         dataset_id: str = "ds-synthetic-v1",
         split: DatasetSplitType = DatasetSplitType.HELD_OUT,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> BatchBenchmarkReportSchema:
         await self.audit_service.record_event(
             action="BENCHMARK_STARTED",
@@ -221,7 +221,7 @@ class BenchmarkService:
     async def verify_dataset_integrity(
         self,
         manifest_path: Optional[str] = None,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> DatasetManifestSchema:
         manifest = self.benchmark_engine.dataset_exporter.verify_dataset_integrity(manifest_path)
 
@@ -245,7 +245,7 @@ class BenchmarkService:
     async def compare_two_policies(
         self,
         request: PolicyComparisonRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> PolicyComparisonReportSchema:
         if not self.policy_repo:
             raise RuntimeError("PolicyRepository is required for policy comparison.")

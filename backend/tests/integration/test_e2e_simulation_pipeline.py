@@ -66,7 +66,7 @@ async def test_complete_end_to_end_simulation_pipeline():
             category=PolicyCategory.VELOCITY,
             rules=[rule_vel]
         ),
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
     assert policy.id is not None
 
@@ -79,7 +79,7 @@ async def test_complete_end_to_end_simulation_pipeline():
         attack_transaction_count=40,
         sim_duration_hours=6
     )
-    sim_run = await sim_service.run_simulation("m-e2e-01", sim_req, actor_name="Arjun Mehta")
+    sim_run = await sim_service.run_simulation("m-e2e-01", sim_req, actor_name="Harsh Shrivastava")
 
     assert sim_run.total_transactions == 140
     assert sim_run.seed == 49201
@@ -95,7 +95,7 @@ async def test_complete_end_to_end_simulation_pipeline():
     assert target_vuln.simulated_exposure > 0.0
 
     # 5. Generate AI Defensive Patch Proposal
-    patch = await patch_service.generate_patch_for_vulnerability(target_vuln.id, actor_name="Arjun Mehta")
+    patch = await patch_service.generate_patch_for_vulnerability(target_vuln.id, actor_name="Harsh Shrivastava")
     assert patch.status.value == "PENDING_SIMULATION"
     assert len(patch.proposed_changes) >= 1
 
@@ -114,7 +114,7 @@ async def test_complete_end_to_end_simulation_pipeline():
         policy_version_number="v1.1.0",
         transactions=transactions,
         split=DatasetSplitType.HELD_OUT,
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
     assert held_out_run.dataset_split == DatasetSplitType.HELD_OUT
     assert held_out_run.is_held_out_isolated is True
@@ -124,7 +124,7 @@ async def test_complete_end_to_end_simulation_pipeline():
     approved_patch = await patch_service.approve_patch(
         patch.id,
         PatchApproveRequest(notes="Empirically verified in E2E pipeline test"),
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
     assert approved_patch.status.value == "APPROVED"
 

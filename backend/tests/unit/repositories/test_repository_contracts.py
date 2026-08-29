@@ -189,7 +189,7 @@ async def test_incident_repository_contract(mongo_db):
         affected_policy_id="pol-001",
         affected_policy_name="Test Policy",
         summary="Testing incident contract",
-        owner="Arjun Mehta",
+        owner="Harsh Shrivastava",
         simulated_exposure=50000.0,
         bypasses_count=10,
     )

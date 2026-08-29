@@ -41,7 +41,7 @@ class ReportService:
         self,
         merchant_id: str,
         request: ReportGenerateRequest,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> ExecutiveReportResponse:
         # Load latest simulation
         if request.simulation_id:

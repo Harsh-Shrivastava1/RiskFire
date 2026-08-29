@@ -79,7 +79,7 @@ export const usePolicyBuilder = () => {
             status: 'ACTIVE',
             rules,
             createdAt: new Date().toISOString(),
-            createdBy: 'Arjun Mehta',
+            createdBy: 'Harsh Shrivastava',
             notes: 'Initial policy configuration created via PolicyBuilder.',
           },
         ],

@@ -36,7 +36,7 @@ class AttackService:
     async def generate_attack_plan(
         self,
         input_data: AttackPlannerInput,
-        actor_name: str = "Arjun Mehta"
+        actor_name: str = "Harsh Shrivastava"
     ) -> AttackPlan:
         if not self.planner:
             raise RuntimeError("AttackPlanner is not initialized (missing AIProvider).")

@@ -66,7 +66,7 @@ class InMemoryPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=[rule_1, rule_2, rule_3],
             created_at="2026-08-18T10:00:00Z",
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes="Baseline merchant policy protecting against brute velocity spikes."
         )
         
@@ -179,7 +179,7 @@ class InMemoryPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=[_r_dev1, _r_dev2],
             created_at="2026-08-19T10:30:00Z",
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes="Device-centric policy targeting multi-account hardware fingerprint collusion."
         )
         _pol_dev = PolicyResponse(
@@ -291,7 +291,7 @@ class InMemoryPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=[_r_ref1, _r_ref2],
             created_at="2026-08-19T12:00:00Z",
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes="Refund abuse detection policy. Flags suspicious frequency patterns without blocking legitimate users."
         )
         _pol_ref = PolicyResponse(
@@ -403,7 +403,7 @@ class InMemoryPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=[_r_ato1, _r_ato2],
             created_at="2026-08-19T14:00:00Z",
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes="Account Takeover Protection — aggressive thresholds. Higher false positive rate acceptable for high-risk scenarios."
         )
         _pol_ato = PolicyResponse(
@@ -471,7 +471,7 @@ class InMemoryPolicyRepository(PolicyRepository):
             status=PolicyStatus.ACTIVE,
             rules=[_r_crd1, _r_crd2, _r_crd3],
             created_at="2026-08-19T15:00:00Z",
-            created_by="Arjun Mehta",
+            created_by="Harsh Shrivastava",
             notes="Three-dimensional coordinated fraud detection — balanced recall and precision across all three attack vectors."
         )
         _pol_crd = PolicyResponse(
@@ -550,7 +550,7 @@ class InMemoryPolicyRepository(PolicyRepository):
                 status=PolicyStatus.ACTIVE,
                 rules=rules,
                 created_at=now_iso,
-                created_by="Arjun Mehta",
+                created_by="Harsh Shrivastava",
                 notes=data.notes
             )
             

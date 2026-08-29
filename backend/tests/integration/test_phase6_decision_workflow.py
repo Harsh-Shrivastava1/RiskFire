@@ -98,10 +98,10 @@ async def test_phase6_full_decision_workflow():
     approved = await patch_service.approve_patch(
         patch_id=evaluated_patch.id,
         request=approval_req,
-        actor_name="Arjun Mehta"
+        actor_name="Harsh Shrivastava"
     )
     assert approved.status == PatchStatus.APPROVED
-    assert approved.reviewed_by == "Arjun Mehta"
+    assert approved.reviewed_by == "Harsh Shrivastava"
 
     # Verify Policy Version was promoted
     policy = await policy_repo.get_policy_by_id(approved.source_policy_id)
@@ -117,7 +117,7 @@ async def test_phase6_full_decision_workflow():
         simulation_id=sims[0].id if sims else None,
         title="Executive Security Decision & Patch Audit Report"
     )
-    report = await report_service.generate_report(merchant_id="merch-001", request=report_req, actor_name="Arjun Mehta")
+    report = await report_service.generate_report(merchant_id="merch-001", request=report_req, actor_name="Harsh Shrivastava")
     assert report.id is not None
     assert report.report_number.startswith("RF-AUDIT-2026-")
     assert len(report.key_findings) > 0

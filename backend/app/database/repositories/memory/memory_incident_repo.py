@@ -58,7 +58,7 @@ class InMemoryIncidentRepository(IncidentRepository):
             simulated_exposure=403200.0,
             bypasses_count=84,
             detected_at="2026-08-20T10:15:22Z",
-            owner="Arjun Mehta",
+            owner="Harsh Shrivastava",
             summary="Red-team simulation identified critical weakness in account-scoped rate limits. An attacker cycling 8 synthetic accounts through a single hardware fingerprint bypassed all merchant velocity constraints.",
             timeline=[t1, t2, t3]
         )

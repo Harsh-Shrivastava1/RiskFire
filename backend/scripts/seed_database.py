@@ -106,7 +106,7 @@ def build_seed_data():
         status=PolicyStatus.ACTIVE,
         rules=rules_pol1,
         created_at="2026-08-15T09:00:00Z",
-        created_by="Arjun Mehta",
+        created_by="Harsh Shrivastava",
         notes="Baseline production velocity and high-value transaction risk policy."
     )
 
@@ -267,7 +267,7 @@ def build_seed_data():
         status=PolicyStatus.ACTIVE,
         rules=rules_pol4,
         created_at="2026-08-19T10:30:00Z",
-        created_by="Arjun Mehta",
+        created_by="Harsh Shrivastava",
         notes="Device-centric policy targeting multi-account hardware fingerprint collusion."
     )
     policy4 = PolicyResponse(
@@ -379,7 +379,7 @@ def build_seed_data():
         status=PolicyStatus.ACTIVE,
         rules=rules_pol6,
         created_at="2026-08-19T12:00:00Z",
-        created_by="Arjun Mehta",
+        created_by="Harsh Shrivastava",
         notes="Refund abuse detection policy. Flags suspicious frequency patterns without blocking legitimate users."
     )
     policy6 = PolicyResponse(
@@ -492,7 +492,7 @@ def build_seed_data():
         status=PolicyStatus.ACTIVE,
         rules=rules_pol8,
         created_at="2026-08-19T14:00:00Z",
-        created_by="Arjun Mehta",
+        created_by="Harsh Shrivastava",
         notes="Account Takeover Protection — aggressive thresholds. Higher false positive rate acceptable for high-risk scenarios."
     )
     policy8 = PolicyResponse(
@@ -560,7 +560,7 @@ def build_seed_data():
         status=PolicyStatus.ACTIVE,
         rules=rules_pol9,
         created_at="2026-08-19T15:00:00Z",
-        created_by="Arjun Mehta",
+        created_by="Harsh Shrivastava",
         notes="Three-dimensional coordinated fraud detection — balanced recall and precision across all three attack vectors."
     )
     policy9 = PolicyResponse(
@@ -1024,7 +1024,7 @@ def build_seed_data():
         simulated_exposure=403200.0,
         bypasses_count=84,
         detected_at="2026-08-20T10:15:22Z",
-        owner="Arjun Mehta",
+        owner="Harsh Shrivastava",
         summary="Red-team simulation identified critical weakness in account-scoped rate limits. An attacker cycling 8 synthetic accounts through a single hardware fingerprint bypassed all merchant velocity constraints.",
         timeline=[t_inc1, t_inc2, t_inc3]
     )
@@ -1054,7 +1054,7 @@ def build_seed_data():
         timestamp="2026-08-20T10:15:00Z",
         action="SIMULATION_EXECUTION_TRIGGERED",
         actor_type=AuditActorType.USER,
-        actor_name="Arjun Mehta",
+        actor_name="Harsh Shrivastava",
         entity_type="SimulationRun",
         entity_id="sim-run-8921",
         entity_name="Fire Drill: Velocity & Hardware Stress Test",

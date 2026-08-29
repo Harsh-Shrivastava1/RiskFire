@@ -226,7 +226,7 @@ async def test_incident_lifecycle_persistence(setup_mongo_test_env):
             "affected_policy_id": "pol-vel-01",
             "affected_policy_name": "Core Merchant Velocity & High-Value Guard",
             "summary": "Testing incident lifecycle in MongoDB",
-            "owner": "Arjun Mehta",
+            "owner": "Harsh Shrivastava",
             "simulated_exposure": 120000.0,
             "bypasses_count": 15,
         }
