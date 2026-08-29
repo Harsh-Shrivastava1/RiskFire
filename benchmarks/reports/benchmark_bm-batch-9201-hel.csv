@@ -1,0 +1,34 @@
+=== RISKFIRE BENCHMARK REPORT ===
+Benchmark ID,bm-batch-9201-hel
+Dataset ID,ds-synthetic-v1
+Seed,49201
+Dataset Split,held_out
+Total Scenarios,10
+Total Transactions,437
+Integrity Status,PASS
+Held-Out Isolation,PASS
+Created At,2026-08-29T05:37:44.912795+00:00
+
+=== AGGREGATE METRICS COMPARISON ===
+Metric,Baseline,Candidate,Delta
+Detection Accuracy (Recall),15.0%,20.6%,5.6%
+Precision,9.5%,10.8%,1.3%
+False Positive Rate (FPR),46.1%,55.2%,9.1%
+Attack Success Rate (ASR),85.0%,79.4%,-5.6%
+Successful Bypasses,91,85,-6
+Simulated Financial Exposure,"INR 478,913.00","INR 425,924.00","INR 52,989.00"
+Net Improvement Score,-3.5
+Recommendation,REJECT_PATCH
+
+=== PER-SCENARIO BREAKDOWN ===
+Scenario ID,Scenario Name,Attack Type,Total Txns,Adversarial,Legitimate,Bypasses,Intercepted,Recall (%),FPR (%),Attack Success Rate (%),Exposure (INR),Status
+SCN-01,Multi-Account Identity Fragmentation,IDENTITY_FRAGMENTER,48,11,37,11,0,0.0%,54.1%,100.0%,"INR 59,737.00",COMPLETED
+SCN-02,Account Velocity Micro-Pulsing,VELOCITY_ATTACKER,36,6,30,6,0,0.0%,53.3%,100.0%,"INR 28,897.00",COMPLETED
+SCN-03,Device Spoofing Velocity Burst,IDENTITY_FRAGMENTER,39,15,24,15,0,0.0%,37.5%,100.0%,"INR 81,490.00",COMPLETED
+SCN-04,Coordinated Syndicate Ring,COORDINATED_CLUSTER,63,12,51,9,3,25.0%,58.8%,75.0%,"INR 37,192.00",COMPLETED
+SCN-05,High-Value Amount Ceiling Bypass,VELOCITY_ATTACKER,34,11,23,11,0,0.0%,60.9%,100.0%,"INR 57,759.00",COMPLETED
+SCN-06,Payment Instrument Rotation,PAYMENT_ROTATOR,44,12,32,7,5,41.7%,62.5%,58.3%,"INR 20,635.00",COMPLETED
+SCN-07,Refund-to-Order Ratio Abuse,REFUND_ABUSER,31,6,25,5,1,16.7%,64.0%,83.3%,"INR 21,722.00",COMPLETED
+SCN-08,Promotion & Coupon Stacking,PROMOTION_ABUSER,48,12,36,7,5,41.7%,47.2%,58.3%,"INR 36,599.00",COMPLETED
+SCN-09,Rapid Account-Switching Bursts,IDENTITY_FRAGMENTER,44,5,39,5,0,0.0%,59.0%,100.0%,"INR 32,083.00",COMPLETED
+SCN-10,Address Cluster Re-use,COORDINATED_CLUSTER,50,17,33,9,8,47.1%,51.5%,52.9%,"INR 49,810.00",COMPLETED

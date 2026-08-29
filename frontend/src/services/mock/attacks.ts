@@ -1,0 +1,88 @@
+import { AttackAgent } from '@/types'
+
+export const mockAttackAgents: AttackAgent[] = [
+  {
+    id: 'agent-vel',
+    type: 'VELOCITY_ATTACKER',
+    name: 'Velocity Attacker',
+    description: 'Attempts to maximize checkout frequency while calculating and remaining just below account-level rate thresholds.',
+    targetPolicies: ['POL-VELOCITY-001', 'POL-AMOUNT-002'],
+    evasionTactics: [
+      'Micro-timed checkout delays (just under threshold windows)',
+      'Sub-threshold cart splitting across orders',
+      'Transaction pacing across rolling windows',
+    ],
+    severityPotential: 'HIGH',
+    iconName: 'Zap',
+  },
+  {
+    id: 'agent-ident',
+    type: 'IDENTITY_FRAGMENTER',
+    name: 'Identity Fragmentation Attacker',
+    description: 'Generates coordinated multi-account synthetic syndicates sharing hardware fingerprints and postal addresses to distribute malicious volume.',
+    targetPolicies: ['POL-VELOCITY-001', 'POL-IDENTITY-003'],
+    evasionTactics: [
+      'Multi-account load-balancing (stays below per-account caps)',
+      'Single device fingerprint shared across 4+ synthetic personas',
+      'Shared physical delivery destination clustering',
+    ],
+    severityPotential: 'CRITICAL',
+    iconName: 'Users',
+  },
+  {
+    id: 'agent-refund',
+    type: 'REFUND_ABUSER',
+    name: 'Refund Abuse Attacker',
+    description: 'Simulates rapid product claim cycles, chargeback timing exploits, and order cancellations before merchant clearing.',
+    targetPolicies: ['POL-REFUND-005'],
+    evasionTactics: [
+      'Exploiting clearing lag to submit duplicate return tickets',
+      'Cycling refunds across multiple accounts for single orders',
+      'Sub-threshold claim value optimization',
+    ],
+    severityPotential: 'MEDIUM',
+    iconName: 'RefreshCw',
+  },
+  {
+    id: 'agent-promo',
+    type: 'PROMOTION_ABUSER',
+    name: 'Promotion Abuse Attacker',
+    description: 'Exploits high-discount introductory vouchers, coupon reuse, and circular referral incentive rings.',
+    targetPolicies: ['POL-PROMO-006', 'POL-IDENTITY-003'],
+    evasionTactics: [
+      'Syndicated referral code looping',
+      'New customer voucher farming using disposable accounts',
+      'Coordinated promotion exhaustion',
+    ],
+    severityPotential: 'MEDIUM',
+    iconName: 'Tag',
+  },
+  {
+    id: 'agent-rot',
+    type: 'PAYMENT_ROTATOR',
+    name: 'Payment Instrument Rotation Attacker',
+    description: 'Rotates synthetic debit cards, virtual UPI handles, and credit instruments across orders to dodge card velocity limits.',
+    targetPolicies: ['POL-INSTRUMENT-004'],
+    evasionTactics: [
+      'Virtual instrument round-robin pooling',
+      'Single account cycling through 8+ payment methods',
+      'Interleaving payment types to evade single-channel rules',
+    ],
+    severityPotential: 'HIGH',
+    iconName: 'CreditCard',
+  },
+  {
+    id: 'agent-coord',
+    type: 'COORDINATED_CLUSTER',
+    name: 'Coordinated Cluster Attacker',
+    description: 'Full-spectrum syndicate simulation combining multi-account fragmentation, payment instrument pools, and coordinated timing bursts.',
+    targetPolicies: ['POL-VELOCITY-001', 'POL-IDENTITY-003', 'POL-INSTRUMENT-004'],
+    evasionTactics: [
+      'Complex multi-graph identity topology',
+      'Cross-instrument and cross-device routing',
+      'Distributed bursts disguised as organic flash traffic',
+    ],
+    severityPotential: 'CRITICAL',
+    iconName: 'Network',
+  },
+]

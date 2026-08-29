@@ -1,0 +1,127 @@
+# ============================================================
+# RiskFire .gitignore
+# ============================================================
+
+# --- Environment & Secrets ---
+.env
+.env.*
+!.env.example
+*.env
+*.env.local
+*.env.production
+*.key
+*.pem
+*.secret
+*.p12
+*.pfx
+*.cert
+*.crt
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Virtual Environments ---
+.venv/
+venv/
+ENV/
+env/
+.env/
+
+# --- Testing & Code Coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# --- Node.js & Frontend ---
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+dist-ssr/
+frontend/.vite/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- IDEs & Editors ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+*.iml
+
+# --- Operating System ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# --- Logs & Temporary Files ---
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.pid
+
+# --- Databases & Dumps ---
+*.db
+*.sqlite
+*.sqlite3
+dump/
+mongodb_dump/
+
+# --- AI & Agent Generated Artifacts ---
+brain/
+.gemini/
+.agents/
+scratch/
+
+# --- Large Generated Datasets / Reports ---
+datasets/development/*.jsonl
+datasets/validation/*.jsonl
+datasets/held_out/*.jsonl
+benchmarks/reports/*.json
+
+# Keep placeholder files in directories
+!datasets/development/.gitkeep
+!datasets/validation/.gitkeep
+!datasets/held_out/.gitkeep
+!benchmarks/reports/.gitkeep
+!frontend/src/assets/.gitkeep

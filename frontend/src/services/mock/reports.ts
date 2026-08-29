@@ -1,0 +1,56 @@
+import { ExecutiveReport } from '@/types'
+
+export const mockReports: ExecutiveReport[] = [
+  {
+    id: 'rep-001',
+    reportNumber: 'REP-2026-08-01',
+    title: 'Adversarial Risk Audit & Policy Vulnerability Assessment (Fire Drill #142)',
+    createdAt: '2026-08-20T12:00:00Z',
+    simulationId: 'sim-142',
+    policyVersionTested: 'POL-VELOCITY-001 (v1.2)',
+    author: 'RiskFire Automated Red-Team Engine',
+    status: 'FINAL',
+    riskPostureScore: 74,
+    executiveSummary: 'An automated red-team audit was conducted against baseline payment risk policies using synthetic adversarial simulation #142 (3,200 synthetic transactions, seed #489201). The simulation uncovered a critical vulnerability in account-level velocity rules: multi-account identity fragmentation was able to achieve 184 successful bypasses, generating ₹11.8L in simulated exposure. A defensive patch proposing hardware device-level velocity and address clustering was simulated on the held-out benchmark split, proving a 94.0% detection recall and reducing simulated exposure to ₹1.9L without causing excessive legitimate customer friction.',
+    keyFindings: [
+      {
+        id: 'kf-01',
+        title: 'Multi-Account Device Clustering Bypasses Single-Account Velocity',
+        severity: 'CRITICAL',
+        affectedPolicy: 'POL-VELOCITY-001',
+        exposureEstimate: 1180000,
+        description: 'Adversary created 4+ accounts on a single device, keeping each account below the 3 txns/10m threshold.',
+        remediationStatus: 'PATCH_AVAILABLE',
+      },
+      {
+        id: 'kf-02',
+        title: 'Virtual UPI Sub-Handle Cycling Evades Exact Match String Checking',
+        severity: 'HIGH',
+        affectedPolicy: 'POL-INSTRUMENT-004',
+        exposureEstimate: 540000,
+        description: 'Virtual handle rotation under same bank VPA stem bypasses single-handle velocity.',
+        remediationStatus: 'UNDER_REVIEW',
+      },
+      {
+        id: 'kf-03',
+        title: 'Boundary Value Order Splitting (₹49,800 - ₹49,990)',
+        severity: 'MEDIUM',
+        affectedPolicy: 'POL-AMOUNT-002',
+        exposureEstimate: 180000,
+        description: 'Orders structured just below ₹50,000 threshold evade stepped authentication.',
+        remediationStatus: 'RESOLVED',
+      },
+    ],
+    topVulnerabilitiesCount: 3,
+    totalSimulatedExposure: 1900000,
+    overallPolicyRecall: 81.4,
+    overallFpr: 4.8,
+    recommendedActions: [
+      'Approve and promote Patch Proposal #001 (POL-VELOCITY-001 v1.3) into active production ruleset.',
+      'Deploy bank VPA namespace aggregation on UPI payment instrument rules.',
+      'Implement a 6-hour rolling accumulation window for transactions approaching the ₹50,000 ceiling.',
+      'Schedule automated weekly Fire Drill regression simulations against the 15% held-out test split.',
+    ],
+    methodologyDisclaimer: 'All data, transactions, entities, and financial metrics presented in this report were generated in a controlled synthetic simulation environment using deterministic seed #489201. All financial exposure figures represent simulated risk estimates rather than realized merchant financial losses.',
+  },
+]

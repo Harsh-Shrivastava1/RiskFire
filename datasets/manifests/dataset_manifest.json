@@ -1,0 +1,38 @@
+{
+  "dataset_id": "ds-synthetic-v1",
+  "generator_version": "1.0.0",
+  "schema_version": "1.0.0",
+  "seed": 49201,
+  "total_records": 296,
+  "development_count": 215,
+  "validation_count": 40,
+  "held_out_count": 41,
+  "split_strategy": "70_15_15_DETERMINISTIC",
+  "files": [
+    {
+      "split": "development",
+      "file_name": "transactions.json",
+      "file_path": "datasets/development/transactions.json",
+      "record_count": 215,
+      "sha256_hash": "5cdb6c1a5329f6464b58b387efadb3e3a059d829bd781be3b45847fc24258869",
+      "byte_size": 106395
+    },
+    {
+      "split": "validation",
+      "file_name": "transactions.json",
+      "file_path": "datasets/validation/transactions.json",
+      "record_count": 40,
+      "sha256_hash": "f1bf6a024adf0927825b872ecd79394f2e70c2693b518d40f1c739c49392a9d3",
+      "byte_size": 20131
+    },
+    {
+      "split": "held_out",
+      "file_name": "transactions.json",
+      "file_path": "datasets/held_out/transactions.json",
+      "record_count": 41,
+      "sha256_hash": "d1180c9b97f5a8f1fb37c5214826ca414cc1084df0853b251e190e9317f14cb8",
+      "byte_size": 20038
+    }
+  ],
+  "created_at": "2026-08-29T05:37:44.529807+00:00"
+}
