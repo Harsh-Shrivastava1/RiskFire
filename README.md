@@ -520,9 +520,9 @@ Payment risk engineering involves a continuous cat-and-mouse dynamic between mer
 
 ---
 
-## Team
+## Developer
 
-- **Team Name:** RiskFire Engineering
+- **Name:** Harsh Shrivastava
 - **Track:** Track 02 — AI Risk Manager
 - **Hackathon:** Razorpay Buildathon / AI Builder Evaluation
 
