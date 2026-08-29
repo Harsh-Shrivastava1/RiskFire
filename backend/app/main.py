@@ -17,7 +17,9 @@ from backend.app.core.exceptions import (
     AIProviderTimeoutError,
     ConfigurationError,
     ConflictError,
+    RateLimitExceededError,
 )
+from backend.app.core.rate_limit import RateLimitMiddleware
 from backend.app.api.v1.router import api_v1_router
 from backend.app.schemas.common import APIErrorResponse, ErrorDetail
 
@@ -56,6 +58,9 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Configure Rate Limiting Middleware
+app.add_middleware(RateLimitMiddleware)
+
 # Configure CORS for local Vite development
 app.add_middleware(
     CORSMiddleware,
@@ -67,6 +72,20 @@ app.add_middleware(
 
 
 # Exception Handlers
+@app.exception_handler(RateLimitExceededError)
+async def rate_limit_exceeded_handler(request: Request, exc: RateLimitExceededError):
+    return JSONResponse(
+        status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+        headers={
+            "Retry-After": str(exc.retry_after),
+            "X-RateLimit-Limit": str(exc.limit),
+            "X-RateLimit-Remaining": "0",
+            "X-RateLimit-Reset": str(exc.retry_after),
+        },
+        content={"error": {"code": exc.code, "message": exc.message, "details": exc.details}}
+    )
+
+
 @app.exception_handler(ResourceNotFoundError)
 async def resource_not_found_handler(request: Request, exc: ResourceNotFoundError):
     return JSONResponse(

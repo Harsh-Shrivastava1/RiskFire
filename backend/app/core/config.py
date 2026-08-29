@@ -43,6 +43,12 @@ class Settings(BaseSettings):
     DEV_MERCHANT_ID: str = "m-dev-01"
     DEV_MERCHANT_NAME: str = "Acme Payments India Pvt Ltd"
     
+    # Rate Limiting Configuration
+    RATE_LIMIT_ENABLED: bool = True
+    RATE_LIMIT_DEFAULT_PER_MINUTE: int = 180
+    RATE_LIMIT_HEAVY_PER_MINUTE: int = 60
+    RATE_LIMIT_WINDOW_SECONDS: int = 60
+    
     model_config = SettingsConfigDict(
         env_file=(".env", "backend/.env"),
         env_file_encoding="utf-8",

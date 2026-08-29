@@ -343,6 +343,12 @@ MONGODB_DB_NAME=riskfire_db
 # Simulation & Deterministic Defaults
 DEFAULT_SIMULATION_SEED=49201
 DEFAULT_SYNTHETIC_TRANSACTIONS=3200
+
+# Rate Limiting Configuration
+RATE_LIMIT_ENABLED=true
+RATE_LIMIT_DEFAULT_PER_MINUTE=180
+RATE_LIMIT_HEAVY_PER_MINUTE=60
+RATE_LIMIT_WINDOW_SECONDS=60
 ```
 
 *Note: If you do not have a Groq API key, set `AI_PROVIDER=mock` to run with deterministic offline AI responses.*
@@ -475,6 +481,7 @@ Follow this 5-minute walkthrough to experience the complete RiskFire workflow:
 - **AI Trust Boundary Validation:** All AI completions must strictly conform to Pydantic domain schemas. AI outputs that fail validation or propose out-of-bounds parameters are rejected.
 - **Deterministic Authority:** AI cannot compute financial exposure, alter confusion matrix counts, or deploy policies autonomously. All calculations and decision gates are executed by deterministic code.
 - **Immutable Policy Lineage:** Policy versions are immutable. Approving a patch creates a new version while preserving the full historical audit trail.
+- **API Protection & Production-Style Rate Limiting:** In-memory sliding window rate limiting middleware enforces tiered quotas (180 req/min for general API browsing and live simulation polling; 60 req/min for compute-heavy Fire Drills, batch benchmarks, and AI generation). Excess requests receive standard `HTTP 429 Too Many Requests` responses with `Retry-After` and `X-RateLimit-*` headers without interrupting internal simulation execution or deterministic scoring.
 
 ---
 

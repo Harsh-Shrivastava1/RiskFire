@@ -78,3 +78,16 @@ class ConflictError(RiskFireException):
     """Raised when a resource state conflict occurs (e.g. duplicate key, immutable state)."""
     def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
         super().__init__(message=message, code="RESOURCE_CONFLICT", details=details)
+
+
+class RateLimitExceededError(RiskFireException):
+    """Raised when an API client exceeds the request rate limit."""
+    def __init__(self, retry_after: int, limit: int, window: int = 60):
+        super().__init__(
+            message=f"Rate limit of {limit} requests exceeded. Try again in {retry_after} seconds.",
+            code="RATE_LIMIT_EXCEEDED",
+            details={"retry_after_seconds": retry_after, "limit": limit, "window_seconds": window}
+        )
+        self.retry_after = retry_after
+        self.limit = limit
+        self.window = window
