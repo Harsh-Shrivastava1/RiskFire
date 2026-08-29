@@ -123,14 +123,66 @@ class AttackGraphEngine:
                 )
                 y_cursor[GraphEntityType.IP] += 85.0
 
-            if dev_id and ip_id:
-                edge_id = f"e-{dev_id}-{ip_id}"
+            # Create Address Node & Edge
+            if addr_id and addr_id not in nodes_map:
+                nodes_map[addr_id] = GraphNodeSchema(
+                    id=addr_id,
+                    type="address",
+                    position=PositionSchema(x=col_x[GraphEntityType.ADDRESS], y=y_cursor[GraphEntityType.ADDRESS]),
+                    data=GraphNodeDataSchema(
+                        id=addr_id,
+                        label=f"Addr {addr_id[-6:]}",
+                        entityType=GraphEntityType.ADDRESS,
+                        identifier=addr_id,
+                        isAdversarial=is_adv,
+                        isShared=connections_count.get(addr_id, 0) > 1,
+                        connectionCount=connections_count.get(addr_id, 1),
+                        riskLevel="HIGH" if is_adv else "LOW",
+                        metadata={"address_id": addr_id}
+                    )
+                )
+                y_cursor[GraphEntityType.ADDRESS] += 85.0
+
+            if acc_id and addr_id:
+                edge_id = f"e-{acc_id}-{addr_id}"
                 if edge_id not in edges_map:
                     edges_map[edge_id] = GraphEdgeSchema(
                         id=edge_id,
-                        source=dev_id,
-                        target=ip_id,
-                        label="CONNECTED_FROM",
+                        source=acc_id,
+                        target=addr_id,
+                        label="SHIPPED_TO",
+                        animated=is_adv,
+                        style={"stroke": "#dc2626" if is_adv else "#94a3b8"}
+                    )
+
+            # Create Payment Instrument Node & Edge
+            if inst_id and inst_id not in nodes_map:
+                nodes_map[inst_id] = GraphNodeSchema(
+                    id=inst_id,
+                    type="payment_instrument",
+                    position=PositionSchema(x=col_x[GraphEntityType.PAYMENT_INSTRUMENT], y=y_cursor[GraphEntityType.PAYMENT_INSTRUMENT]),
+                    data=GraphNodeDataSchema(
+                        id=inst_id,
+                        label=f"Card {inst_id[-6:]}",
+                        entityType=GraphEntityType.PAYMENT_INSTRUMENT,
+                        identifier=inst_id,
+                        isAdversarial=is_adv,
+                        isShared=connections_count.get(inst_id, 0) > 1,
+                        connectionCount=connections_count.get(inst_id, 1),
+                        riskLevel="CRITICAL" if is_adv else "LOW",
+                        metadata={"instrument_id": inst_id}
+                    )
+                )
+                y_cursor[GraphEntityType.PAYMENT_INSTRUMENT] += 85.0
+
+            if acc_id and inst_id:
+                edge_id = f"e-{acc_id}-{inst_id}"
+                if edge_id not in edges_map:
+                    edges_map[edge_id] = GraphEdgeSchema(
+                        id=edge_id,
+                        source=acc_id,
+                        target=inst_id,
+                        label="PAID_WITH",
                         animated=is_adv,
                         style={"stroke": "#dc2626" if is_adv else "#94a3b8"}
                     )
@@ -139,3 +191,4 @@ class AttackGraphEngine:
             nodes=list(nodes_map.values()),
             edges=list(edges_map.values())
         )
+

@@ -7,7 +7,7 @@ Total Scenarios,10
 Total Transactions,437
 Integrity Status,PASS
 Held-Out Isolation,PASS
-Created At,2026-08-29T05:37:44.912795+00:00
+Created At,2026-08-29T06:35:23.053322+00:00
 
 === AGGREGATE METRICS COMPARISON ===
 Metric,Baseline,Candidate,Delta

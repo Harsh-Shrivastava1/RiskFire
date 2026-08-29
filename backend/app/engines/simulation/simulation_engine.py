@@ -178,7 +178,10 @@ class SimulationEngine:
             policy_id=policy.id,
             policy_name=policy.name,
             policy_version_number=policy.current_version_number,
-            evaluated_transactions=evaluated_txns
+            evaluated_transactions=evaluated_txns,
+            active_rules=rules,
+            dataset_split="HELD_OUT",
+            seed=seed
         )
 
         exposure_res = self.exposure_engine.calculate_exposure(evaluated_txns)

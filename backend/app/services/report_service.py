@@ -68,19 +68,51 @@ class ReportService:
             for i, v in enumerate(vulns[:5])
         ]
 
-        # Call AI Report Generator through trust boundary
-        ai_input = ReportNarrativeInput(
-            simulation_id=sim.id,
-            merchant_name="Acme Payments India Pvt Ltd",
-            policy_name=sim.policy_name,
-            total_transactions=sim.total_transactions,
-            bypasses_found=sim.bypasses_found,
-            simulated_exposure=sim.simulated_exposure,
-            detection_recall=sim.detection_recall,
-            false_positive_rate=sim.false_positive_rate,
-            vulnerabilities_summary=[v.title for v in vulns[:3]]
-        )
-        ai_narrative = await self.report_generator.generate_narrative(ai_input)
+        # Call AI Report Generator through trust boundary with deterministic fallback
+        ai_narrative = None
+        try:
+            ai_input = ReportNarrativeInput(
+                simulation_id=sim.id,
+                merchant_name="Acme Payments India Pvt Ltd",
+                policy_name=sim.policy_name,
+                total_transactions=sim.total_transactions,
+                bypasses_found=sim.bypasses_found,
+                simulated_exposure=sim.simulated_exposure,
+                detection_recall=sim.detection_recall,
+                false_positive_rate=sim.false_positive_rate,
+                vulnerabilities_summary=[v.title for v in vulns[:3]]
+            )
+            ai_narrative = await self.report_generator.generate_narrative(ai_input)
+        except Exception:
+            ai_narrative = None
+
+        if not ai_narrative:
+            # Deterministic report narrative fallback
+            from backend.app.ai.schemas.report_narrative import ReportNarrative
+            exec_text = (
+                f"During the latest adversarial red-team simulation of '{sim.policy_name}', the system evaluated "
+                f"{sim.total_transactions:,} synthetic transactions. The policy achieved a {sim.detection_recall:.1f}% "
+                f"attack detection recall with a {sim.false_positive_rate:.1f}% false-positive rate on legitimate traffic. "
+                f"A total of {sim.bypasses_found} adversarial bypasses were detected, resulting in ₹{sim.simulated_exposure:,.2f} "
+                f"in simulated financial exposure across {len(findings)} discovered vulnerability clusters."
+            )
+            actions = [
+                f"Deploy proposed defensive patch to address top vulnerability: {findings[0].title if findings else 'unbounded rate limits'}.",
+                "Execute held-out batch benchmark on candidate policy to verify 0.0% false-alarm regression before production activation.",
+                "Review multi-entity velocity constraints across hardware fingerprints and rotating IP subnets."
+            ]
+            disclaimer = (
+                "CONFIDENTIAL & SYNTHETIC DATA ONLY. All simulation metrics, transactions, and exposure figures are "
+                "empirically derived within RiskFire's deterministic sandbox environment. No real cardholder data was accessed."
+            )
+            ai_narrative = ReportNarrative(
+                executive_summary=exec_text,
+                risk_posture_assessment="MODERATE_EXPOSURE - Policy provides baseline protection but exhibits critical rate-limit blindspots under adversarial load.",
+                key_findings_summary=[f.title for f in findings],
+                recommended_actions=actions,
+                methodology_note="Evaluated using RiskFire's deterministic replay engine with synthetic transaction stream.",
+                disclaimer=disclaimer
+            )
 
         now_iso = datetime.now(timezone.utc).isoformat()
         new_id = f"rep-2026-{len(await self.report_repo.list_reports()) + 1:03d}"

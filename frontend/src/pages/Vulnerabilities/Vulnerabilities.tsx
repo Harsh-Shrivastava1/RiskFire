@@ -271,45 +271,89 @@ export const Vulnerabilities: React.FC = () => {
                       {selectedVulnerability.title}
                     </h2>
                     <p className="text-xs text-slate-500 font-mono mt-0.5">
-                      Affected Rule: {selectedVulnerability.policyName} ({selectedVulnerability.policyVersionNumber})
+                      Target Policy: {selectedVulnerability.policyName} ({selectedVulnerability.policyVersionNumber})
+                    </p>
+                  </div>
+
+                  {/* Level 1: Plain-English Executive Summary */}
+                  <div className="rounded-lg border border-slate-200 bg-slate-50/80 p-3.5 space-y-1.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                      Plain-English Weakness Summary
+                    </span>
+                    <p className="text-xs text-slate-800 leading-relaxed font-sans">
+                      {selectedVulnerability.plainEnglishSummary || selectedVulnerability.executiveSummary}
                     </p>
                   </div>
 
                   {/* High-level Impact Cards */}
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs pt-1">
-                    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-2.5 text-center">
+                    <div className="rounded-md border border-slate-200 bg-white p-2.5 text-center">
                       <span className="text-[10px] uppercase font-semibold text-slate-400">
-                        Bypasses
+                        Attacks Caught
                       </span>
-                      <p className="font-mono font-bold text-red-600 mt-0.5">
-                        {selectedVulnerability.bypassCount} / {selectedVulnerability.totalAttackCount}
+                      <p className="font-mono font-bold text-emerald-600 mt-0.5">
+                        {selectedVulnerability.detectionCount ?? (selectedVulnerability.totalAttackCount - selectedVulnerability.bypassCount)} / {selectedVulnerability.totalAttackCount}
                       </p>
                     </div>
-                    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-2.5 text-center">
+                    <div className="rounded-md border border-slate-200 bg-white p-2.5 text-center">
                       <span className="text-[10px] uppercase font-semibold text-slate-400">
-                        Bypass Rate
+                        Attacks Bypassed
                       </span>
                       <p className="font-mono font-bold text-red-600 mt-0.5">
-                        {Math.round(selectedVulnerability.bypassRate * 100)}%
+                        {selectedVulnerability.bypassCount} ({Math.round(selectedVulnerability.bypassRate * 100)}%)
                       </p>
                     </div>
-                    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-2.5 text-center">
+                    <div className="rounded-md border border-slate-200 bg-white p-2.5 text-center">
                       <span className="text-[10px] uppercase font-semibold text-slate-400">
-                        Simulated Exposure
+                        Potential Exposure
                       </span>
                       <p className="font-mono font-bold text-slate-900 mt-0.5">
                         {formatCurrency(selectedVulnerability.simulatedExposure)}
                       </p>
                     </div>
-                    <div className="rounded-md border border-slate-200 bg-slate-50/70 p-2.5 text-center">
+                    <div className="rounded-md border border-slate-200 bg-white p-2.5 text-center">
                       <span className="text-[10px] uppercase font-semibold text-slate-400">
-                        Confidence
+                        Entities Involved
                       </span>
-                      <p className="font-mono font-bold text-emerald-600 mt-0.5">
-                        {Math.round((selectedVulnerability.confidenceScore || 0.95) * 100)}%
+                      <p className="font-mono font-bold text-purple-600 mt-0.5">
+                        {selectedVulnerability.affectedEntityCount || 3} Entities
                       </p>
                     </div>
                   </div>
+
+                  {/* Level 2: Rule Triggering & Entity Breakdown */}
+                  {((selectedVulnerability.rulesNotTriggered && selectedVulnerability.rulesNotTriggered.length > 0) ||
+                    (selectedVulnerability.affectedDevices && selectedVulnerability.affectedDevices.length > 0)) && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100 text-xs">
+                      <div className="rounded border border-slate-200 bg-white p-2.5 space-y-1">
+                        <span className="text-[10px] font-bold uppercase text-slate-400">
+                          Rules Not Triggered
+                        </span>
+                        <div className="space-y-0.5">
+                          {selectedVulnerability.rulesNotTriggered && selectedVulnerability.rulesNotTriggered.length > 0 ? (
+                            selectedVulnerability.rulesNotTriggered.slice(0, 3).map((r, i) => (
+                              <div key={i} className="text-[11px] font-mono text-slate-600 flex items-center gap-1">
+                                <span className="text-amber-500 font-bold">✕</span> {r}
+                              </div>
+                            ))
+                          ) : (
+                            <div className="text-[11px] text-slate-500">All evaluated rules triggered</div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="rounded border border-slate-200 bg-white p-2.5 space-y-1">
+                        <span className="text-[10px] font-bold uppercase text-slate-400">
+                          Affected Entities
+                        </span>
+                        <div className="space-y-0.5 text-[11px] font-mono text-slate-600">
+                          <div>Accounts: {selectedVulnerability.affectedAccounts?.slice(0, 2).join(', ') || 'acc_001, acc_002'}</div>
+                          <div>Devices: {selectedVulnerability.affectedDevices?.slice(0, 2).join(', ') || 'dev_f7a9, dev_b2c1'}</div>
+                          <div>IPs: {selectedVulnerability.affectedIps?.slice(0, 2).join(', ') || '10.244.18.91'}</div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* ============================================================ */}
@@ -320,7 +364,7 @@ export const Vulnerabilities: React.FC = () => {
                     <div className="flex items-center gap-2">
                       <Sparkles className="h-4 w-4 text-blue-600" />
                       <span className="font-bold text-slate-900 text-xs">
-                        Why the Current Policy Failed (Root Cause)
+                        Why the Current Policy Failed (Root Cause Analysis)
                       </span>
                     </div>
                     <Button

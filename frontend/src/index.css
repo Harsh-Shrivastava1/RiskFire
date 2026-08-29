@@ -140,3 +140,79 @@
   }
 }
 
+/* Fire Drill Pipeline Animations */
+@keyframes flowPacketX {
+  0% {
+    left: 0%;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+}
+
+@keyframes pulseGlowRing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
+  }
+}
+
+@keyframes pulseOrangeRing {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(234, 88, 12, 0);
+  }
+}
+
+@keyframes progressShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-flow-packet-1 {
+  animation: flowPacketX 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-flow-packet-2 {
+  animation: flowPacketX 2s cubic-bezier(0.4, 0, 0.2, 1) 0.65s infinite;
+}
+
+.animate-flow-packet-3 {
+  animation: flowPacketX 2s cubic-bezier(0.4, 0, 0.2, 1) 1.3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlowRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-orange-glow {
+  animation: pulseOrangeRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-progress-shimmer {
+  background: linear-gradient(90deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%);
+  background-size: 200% 100%;
+  animation: progressShimmer 2s ease-in-out infinite;
+}
+
+
